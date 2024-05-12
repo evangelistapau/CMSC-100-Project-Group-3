@@ -62,11 +62,11 @@ const Order = mongoose.model('Order', {
         type: String,
         unique: true // Ensure transactionID is unique
     },
-    productID: {
-        type: String,
+    productIDs: {
+        type: [String],
     },
     orderQuantity: {
-        type: Number,
+        type: [Number],
     },
     orderStatus: {
         type: Number,
@@ -166,7 +166,7 @@ const removeProduct = async (req, res) => {    //delete a product by product ID
 const saveOrder = async (req, res) => {                 // post method for saving orders
     if (
         !req.body.transactionID || 
-        !req.body.productID ||
+        !req.body.productIDs ||
         !req.body.orderQuantity ||
         !req.body.orderStatus ||
         !req.body.email ||
