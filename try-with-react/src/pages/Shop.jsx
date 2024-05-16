@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Shop() {
 
   const [ items, setItems ] = useState([])
   const [totalItems, setTotal] = useState(0);             // useState for totalItems (initial is 0)
-  const [totalPrice, setPrice] = useState(0);
   const [cart, setCart] = useState([]);                   // useState for cart (initial is an empty list)
 
   useEffect(() => {
@@ -24,14 +23,12 @@ export default function Shop() {
       if(product.productID == item.productID){                // if the item is already in the list
         flag++;                                 // increments flag
         product.count++;                        // increments the product count
-        setPrice(totalPrice+product.productPrice);
         break;
       }
     }
     if(flag == 0){                                    // if the item is not in the list yet
       const countField = {...item, count: 1};         // adds a new field to the object (count: 1)
       setCart([...cart, countField]);                 // appends the object to the cart list
-      setPrice(totalPrice+countField.productPrice);
     }
   }
 
@@ -39,10 +36,9 @@ export default function Shop() {
     setTotal(totalItems-deleteItem.count);                              // subtracts the item count from the total item count
     const newCart = cart.filter(item => item.productID !== deleteItem.productID);     // filters out the item to be deleted
     setCart(newCart);
-    setPrice(totalPrice-(deleteItem.productPrice*deleteItem.count));
   }
 
-  const stringifiedCart = JSON.stringify(cart);
+
 
   return (
     <>
@@ -51,8 +47,13 @@ export default function Shop() {
           <div className="card-container">
             {items.map((item) =>
                 <div className="card">
-                  <img src={item.productImg} className="product-img"></img>
-                  <p>{item.productID}</p>
+                  <p>{item.productName}</p>
+                  <p>₱{item.productPrice}.00</p>
+                  <button onClick={() => addToCart(item)}>Add To Cart</button>
+                </div>
+            )}
+            {items.map((item) =>
+                <div className="card">
                   <p>{item.productName}</p>
                   <p>₱{item.productPrice}.00</p>
                   <button onClick={() => addToCart(item)}>Add To Cart</button>
@@ -75,10 +76,7 @@ export default function Shop() {
               </div>
             </div>
           })}
-          <div className="total-and-button">
-            <p>Subtotal: {totalPrice}</p>
-            <button className="checkout-button"><Link to={`/order-summary?list=${stringifiedCart}&count=${totalItems}&price=${totalPrice}`}>Check Out</Link></button>
-          </div>
+          <button className="checkout-button">Checkout</button>
         </div>
       </main>
     </>

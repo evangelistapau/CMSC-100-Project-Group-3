@@ -2,7 +2,9 @@
 import mongoose from 'mongoose';
 
 // connect to MongoDB
-await mongoose.connect("mongodb://localhost:27017/FarmToTable")           // database name: FarmToTable
+await mongoose.connect("mongodb://localhost:27017/FarmToTable", {           // database name: FarmToTable
+    useNewUrlParser: true, useUnifiedTopology: true
+})
 
 // define and create User model         
 const User = mongoose.model('User', {
@@ -36,22 +38,22 @@ const User = mongoose.model('User', {
 // define and create Product model       
 const Product = mongoose.model('Product', {
     productID: { // added productID (wala sa previous version)
-      type: String,
-    },
+        type: String,
+      },
     productName: {
-      type: String,
-    },
-    productDescription: {
       type: String,
     },
     productType: {
       type: Number,
       enum: [1, 2, 3, 4, 5], //(Int: 1 Staple/2 Fruits and Vegetables/ 3 Livestock/ 4 Seafood/ 5 Others)
     },
-    productQuantity: {
+    productPrice: { // additional field for price (wala sa docs)
       type: Number,
     },
-    productPrice: { // additional field for price (wala sa docs)
+    productDescription: {
+      type: String,
+    },
+    productQuantity: {
       type: Number,
     }
 }, 'productData'); // collection name: productData
@@ -59,28 +61,28 @@ const Product = mongoose.model('Product', {
 // define and create Order model           
 const Order = mongoose.model('Order', {
     transactionID: {
-        type: String,
-        unique: true // Ensure transactionID is unique
-    },
-    productID: {
-        type: String,
-    },
-    orderQuantity: {
-        type: Number,
-    },
-    orderStatus: {
-        type: Number,
-        enum: [0, 1, 2], // (Int: 0 Pending / 1 Completed / 2 Canceled )
-    },
-    email: {
-        type: String,
-    },
-    dateOrdered: {
-        type: Date,
-    },
-    time: {
-        type: Date,
-    }
+          type: String,
+          unique: true // Ensure transactionID is unique
+      },
+      productID: {
+          type: String,
+      },
+      orderQuantity: {
+          type: Number,
+      },
+      orderStatus: {
+          type: Number,
+          enum: [0, 1, 2], // (Int: 0 Pending / 1 Completed / 2 Canceled )
+      },
+      email: {
+          type: String,
+      },
+      dateOrdered: {
+          type: Date,
+      },
+      time: {
+          type: Date,
+      }
 }, 'orderData'); // collection name: orderData
 
 
