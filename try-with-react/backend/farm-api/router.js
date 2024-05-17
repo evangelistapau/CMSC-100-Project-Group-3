@@ -1,7 +1,8 @@
 import {
-    saveUser, 
     saveProduct, updateQty, removeProduct, getAllProducts, 
-    saveOrder, updateStatus, getAllOrders, 
+    saveOrder, updateStatus, getAllOrders, getUsers, customerLogin,
+    customerSignup, addUserShoppingCart, adminLogin, authenticateToken,
+    getUserProfile
 } from './controller.js'
 
 
@@ -16,8 +17,12 @@ export default function router(app) {
     next();
   })
   
-  app.post('/save-user', saveUser)                    // user
-
+  app.post('/signup', customerSignup)   
+  app.get('/signup', getUsers)                 // user
+  app.get('/profile', authenticateToken, getUserProfile);
+  app.post('/shoppingCart',  addUserShoppingCart)
+  app.post('/login', customerLogin)
+  app.post('/login-admin', adminLogin)
   app.post('/save-product', saveProduct)              // product
   app.post('/update-qty', updateQty)
   app.post('/remove-product', removeProduct)
