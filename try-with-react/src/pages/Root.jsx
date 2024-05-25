@@ -1,7 +1,13 @@
 import { Outlet, Link } from 'react-router-dom';
 import logo from '../images/logo.png';
+// import { useAuth } from "../authentication/AuthenticationProv";
 
 export default function Root() {
+  // const { logout } = useAuth();
+
+  // const Logout = () => {
+  //   localStorage.removeItem(token);
+  // };
 
     return (
       <>
@@ -17,6 +23,7 @@ export default function Root() {
                   <li><Link to={`/root/shop`} className="navbar-link">Shop</Link></li>
                   <li><Link to={`/root/orders`} className="navbar-link">Your Orders</Link></li>
                   <li><Link to={`/root/profile`} className="navbar-link">Your Profile</Link></li>
+                  {/* <li><button onClick={Logout} className='signoutBTN'>Sign Out</button></li> */}
               </ul>
             </nav>
           </section>

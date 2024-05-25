@@ -119,7 +119,7 @@ export default function Shop() {
 
     let flag = 0;
     for(const product of cart){                 // iterates through the cart list
-      if(product.productID == item.productID){                // if the item is already in the list
+      if(product._id == item._id){                // if the item is already in the list
         flag++;                                 // increments flag
         product.count++;                        // increments the product count
         setPrice(totalPrice+product.productPrice);
@@ -137,7 +137,7 @@ export default function Shop() {
 
   function deleteFromCart(deleteItem) {           // delete function
     setTotal(totalItems-deleteItem.count);                              // subtracts the item count from the total item count
-    const newCart = cart.filter(item => item.productID !== deleteItem.productID);     // filters out the item to be deleted
+    const newCart = cart.filter(item => item._id !== deleteItem._id);     // filters out the item to be deleted
     setCart(newCart);
     setPrice(totalPrice-(deleteItem.productPrice*deleteItem.count));
     setCartModified(true)
@@ -204,7 +204,7 @@ export default function Shop() {
       <div className="cart">
         <p className="cart-title">Shopping Cart</p>
         {cart.map((prod) => {
-          return <div key = {prod.productID} className="cart-item">
+          return <div key = {prod._id} className="cart-item">
             <div className="cart-left">
                 <p className="cart-name">{prod.productName}&nbsp;</p>
                 <p className="cart-price">- P{prod.productPrice}.00</p>

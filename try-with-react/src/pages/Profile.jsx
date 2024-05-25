@@ -1,44 +1,61 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 export default function Profile() {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [editing, setEditing] = useState(false);
     const [editedUser, setEditedUser] = useState(null);
+    const [orders, setOrders] = useState([]);
 
     const getUserInfo = async (token) => {
-        try {
-            const response = await axios.get('http://localhost:3000/profile', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            return response.data;
-        } catch (error) {
-            throw error;
+        const response = await fetch('http://localhost:3000/profile', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch user info');
         }
+
+        return response.json();
     };
 
     useEffect(() => {
-        const fetchUserInfo = async () => {
-            const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
-            if (!token) {
-                setError('User is not logged in');
-                setLoading(false);
-                return;
-            }
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.error('User is not logged in');
+            return;
+        }
+
+        const fetchUserData = async () => {
             try {
                 const userData = await getUserInfo(token);
                 setUser(userData);
             } catch (err) {
-                setError('Failed to fetch user info');
-            } finally {
-                setLoading(false);
+                console.error('Failed to fetch user info', err);
             }
         };
-        fetchUserInfo();
+
+        fetchUserData();
+
+        const fetchUserOrders = async () => {
+            try {
+              const response = await fetch('http://localhost:3000/get-completed-orders', {
+                headers: {
+                  'Authorization': `Bearer ${token}`
+                }
+              });
+              if (!response.ok) {
+                throw new Error('Failed to fetch orders');
+              }
+              const data = await response.json();
+              setOrders(data);
+            } catch (error) {
+              console.error('Failed to fetch orders', error);
+            }
+          };
+      
+          fetchUserOrders();
     }, []);
 
     const handleEdit = () => {
@@ -47,16 +64,26 @@ export default function Profile() {
     };
 
     const handleSave = async () => {
+        const token = localStorage.getItem('token');
         try {
-            const response = await axios.post('http://localhost:3000/profileEdit', editedUser, {
+            const response = await fetch('http://localhost:3000/profileEdit', {
+                method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(editedUser)
             });
+
+            if (!response.ok) {
+                throw new Error('Failed to update user information');
+            }
+
             setUser(editedUser);
             setEditing(false);
             alert('User information updated successfully!');
         } catch (err) {
+            console.error('Failed to update user information', err);
             alert('Failed to update user information');
         }
     };
@@ -70,32 +97,53 @@ export default function Profile() {
     };
 
     return (
-        <>
-            <div className="profile-main">
-                <p className="profile-title">User Information</p>
-                {user && !editing && (
-                    <div>
-                        <span className="profile-label">First Name: &nbsp;&nbsp;</span>
-                        <span className="profile-value">{user.firstName}</span><br/><br/>
-                        <span className="profile-label">Last Name: &nbsp;&nbsp;</span>
-                        <span className="profile-value">{user.lastName}</span><br/><br/>
-                        <span className="profile-label">Username: &nbsp;&nbsp;</span>
-                        <span className="profile-value">{user.username}</span><br/><br/>
-                        <span className="profile-label">Email: &nbsp;&nbsp;</span>
-                        <span className="profile-value">{user.email}</span><br/><br/><br/>
-                        <button onClick={handleEdit} className="profile-btn">Edit</button>
-                    </div>
-                )}
-                {editing && (
-                    <div>
-                        <p className="profile-label">First Name: &nbsp;&nbsp;<input type="text" name="firstName" value={editedUser.firstName} onChange={handleInputChange} /></p>
-                        <p className="profile-label">Last Name:  &nbsp;&nbsp;<input type="text" name="lastName" value={editedUser.lastName} onChange={handleInputChange} /></p>
-                        <p className="profile-label">Username:  &nbsp;&nbsp;<input type="text" name="username" value={editedUser.username} onChange={handleInputChange} /></p>
-                        <p className="profile-label">Email:  &nbsp;&nbsp;<input type="text" name="email" value={editedUser.email} onChange={handleInputChange} /></p><br/>
-                        <button onClick={handleSave} className="profile-btn">Save</button>
-                    </div>
-                )}
-            </div>
-        </>
+    <div className='ProfilePage'>
+        <div className='user-div'>
+            <h1>MY PROFILE</h1>
+            {user && !editing && (
+                <div>
+                    <p> <strong>Name:</strong> {user.firstName} {user.lastName} </p>
+                    <p><strong>Username:</strong> {user.username}</p>
+                    <p><strong>Email:</strong> {user.email}</p>
+                    <button onClick={handleEdit}>Edit Info</button>
+                </div>
+            )}
+            {editing && (
+                <div>
+                    <p>First Name: <input type="text" name="firstName" value={editedUser.firstName} onChange={handleInputChange} /></p>
+                    <p>Last Name: <input type="text" name="lastName" value={editedUser.lastName} onChange={handleInputChange} /></p>
+                    <p>Username: <input type="text" name="username" value={editedUser.username} onChange={handleInputChange} /></p>
+                    <p>Email: <input type="text" name="email" value={editedUser.email} onChange={handleInputChange} disabled/></p>
+                    <button onClick={handleSave}>Save</button>
+                </div>
+            )}
+        </div>
+
+        <div className='orders-div'>
+            <h2>Purchase History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Date Ordered</th>
+                        <th>Time Ordered</th>
+                        <th>Item Quantity</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {orders.map((order) => (
+                        <tr key={order.transactionID}>
+                            <td>{order.transactionID}</td>
+                            <td>{new Date(order.dateOrdered).toLocaleDateString()}</td>
+                            <td>{order.timeOrdered}</td>
+                            <td>{order.itemQuantity}</td>
+                            <td>{order.totalPrice}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    </div>
     );
 }

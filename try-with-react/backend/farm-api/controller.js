@@ -76,9 +76,9 @@ const User = mongoose.model('User', {
 
 // define and create Product model       
 const Product = mongoose.model('Product', {
-    productID: { // added productID (wala sa previous version)
-      type: String,
-    },
+    // productID: { // added productID (wala sa previous version)
+    //   type: String,
+    // },
     productName: {
       type: String,
     },
@@ -126,6 +126,12 @@ const Order = mongoose.model('Order', {
     },
     timeOrdered: {
         type: String,
+    },
+    itemQuantity: {
+      type: Number,
+    },
+    totalPrice: {
+      type: Number,
     }
 }, 'orderData'); // collection name: orderData
 
@@ -247,7 +253,23 @@ const getUsers = async (req, res) => {                  // post method for savin
 };
 
 // --------------------------------------------
+// Middleware to authenticate token
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
+  if (!token) {
+      return res.status(401).json({ message: 'Access denied. No token provided.' });
+  }
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+      if (err) {
+          return res.status(403).json({ message: 'Invalid token.' });
+      }
+      req.user = { userId: user.userId };  // Explicitly set userId in req.user
+      next();
+  });
+};
 
 // function for User --------------------------
 
@@ -267,16 +289,6 @@ const getTotalPrice = async (req, res) => {
     res.json(await User.find({email: req.query.email}, { totalPrice: 1 }))
 };
 
-const authenticateToken = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1];
-    if (!token) return res.sendStatus(401);
-    jwt.verify(token, SECRET_KEY, (err, user) => {
-        if (err) return res.sendStatus(403);
-        req.user = user;
-        next();
-    });
-};
-  
   // Endpoint to get the logged-in user's information
 const getUserProfile = async (req, res) => {
     try {
@@ -290,30 +302,49 @@ const getUserProfile = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-    const { firstName, lastName, username, email } = req.body;
-      
-    try {
-        // Find the user by their ID (you may need to adjust this based on your application's logic)
-        const user = await User.findById(req.user._id);
-  
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-  
-        // Update user fields if they're provided in the request body
-        if (firstName) user.firstName = firstName;
-        if (lastName) user.lastName = lastName;
-        if (username) user.username = username;
-        if (email) user.email = email;
-  
-        // Save the updated user information
-        await user.save();
-  
-        res.json({ message: 'User information updated successfully' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Server error' });
+  const { firstName, lastName, username, email } = req.body;
+
+  try {
+      // Ensure req.user is available and has _id
+      if (!req.user || !req.user.userId) {
+          return res.status(401).json({ message: 'Unauthorized' });
+      }
+
+      // Find the user by their ID
+      const user = await User.findById(req.user.userId);
+
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Update user fields if they're provided in the request body
+      if (firstName) user.firstName = firstName;
+      if (lastName) user.lastName = lastName;
+      if (username) user.username = username;
+
+      // Save the updated user information
+      await user.save();
+
+      res.json({ message: 'User information updated successfully' });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+  }
+};
+
+//for bonus
+const HistoryPurchased = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.userId).select('email');
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
+    const orders = await Order.find({ email: user.email, orderStatus: 1 });
+    res.json(orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 };
 
 // --------------------------------------------
@@ -445,8 +476,8 @@ const getAllOrders = async (req, res) => {              // get method for gettin
 // --------------------------------------------
 
 export {
-    customerSignup, customerLogin, adminLogin, getUsers,
-    updateCart, getCart, getTotalQty, getTotalPrice, authenticateToken, getUserProfile, updateUser,
-    saveProduct, updateQty, getAllProducts, removeProduct, addProduct, deleteProduct,
-    saveOrder, updateStatus, getAllOrders
+  saveProduct, updateQty, getAllProducts,  removeProduct,
+  saveOrder, updateStatus, getAllOrders, customerSignup, getUsers, customerLogin,
+   adminLogin, authenticateToken, getUserProfile, updateUser, HistoryPurchased, addProduct, deleteProduct,
+   getCart, updateCart, getTotalQty, getTotalPrice
 }

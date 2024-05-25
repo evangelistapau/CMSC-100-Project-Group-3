@@ -65,13 +65,16 @@ export default function OrderSummary() {
         },
         body: JSON.stringify({ 
           transactionID: uuidv4(),
-          productIDs: cart.map(item => item.productID),
+          productIDs: cart.map(item => item._id),
           productNames: cart.map(item => item.productName),
           orderQuantity: cart.map(item => item.count),
           orderStatus: "0",
           email: email,
           dateOrdered: Date(),
-          timeOrdered: moment().format('HH:mm:ss')
+          timeOrdered: moment().format('HH:mm:ss'),
+          itemQuantity: totalItems,
+          totalPrice: totalPrice
+
         })
       })
 
