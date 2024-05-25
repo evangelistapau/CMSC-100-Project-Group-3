@@ -37,7 +37,7 @@ const subSchema = new mongoose.Schema({
 })
 
 // define and create User model         
-// // define and create User model         
+         
 const User = mongoose.model('User', {
     firstName: {
       type: String,
@@ -47,11 +47,6 @@ const User = mongoose.model('User', {
       type: String,
       required: true
     },
-      username: {
-        type: String,
-        required: true,
-        unique: true
-      },
       username: {
       type: String,
       required: true,
@@ -80,19 +75,6 @@ const User = mongoose.model('User', {
       default: 0
     }
   }, 'userData'); // collection name
-  
-  //define and create user shopping cart model
-  const ShoppingCart = mongoose.model('ShoppingCart', {
-    _id: {
-      type: String
-    },
-    items: {
-      type: [String]
-    },
-    quantity: {
-      type: [Number]
-    }
-  }, 'shoppingCartUser'); // collection name
   
 // define and create Product model       
 const Product = mongoose.model('Product', {
@@ -359,26 +341,6 @@ const getUsers = async (req, res) => {                  // post method for savin
 //   }
 // }
 
-
-// Endpoint to get the logged-in user's information
-
-const addUserShoppingCart = async (req, res) => {                  // post method for saving users
-    try {
-        const { _id, items, quantity } = req.body;
-  
-        // Create new shopping cart instance
-        const newShoppingCart = new ShoppingCart({_id, items, quantity });
-  
-        // Save shopping cart to database
-        await newShoppingCart.save();
-  
-        // Send response
-        res.status(201).json({ message: 'Shopping cart created successfully', shoppingCart: newShoppingCart }); // Return the saved shopping cart object
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-};
 // --------------------------------------------
 
 // function for Product -----------------------
@@ -528,10 +490,15 @@ const getAllOrders = async (req, res) => {              // get method for gettin
 
 const updateUser = async (req, res) => {
   const { firstName, lastName, username, email } = req.body;
-    
+
   try {
-      // Find the user by their ID (you may need to adjust this based on your application's logic)
-      const user = await User.findById(req.user._id);
+      // Ensure req.user is available and has _id
+      if (!req.user || !req.user.userId) {
+          return res.status(401).json({ message: 'Unauthorized' });
+      }
+
+      // Find the user by their ID
+      const user = await User.findById(req.user.userId);
 
       if (!user) {
           return res.status(404).json({ message: 'User not found' });
@@ -541,7 +508,6 @@ const updateUser = async (req, res) => {
       if (firstName) user.firstName = firstName;
       if (lastName) user.lastName = lastName;
       if (username) user.username = username;
-      if (email) user.email = email;
 
       // Save the updated user information
       await user.save();
@@ -557,6 +523,6 @@ const updateUser = async (req, res) => {
 export {
     saveProduct, updateQty, getAllProducts,  removeProduct,
     saveOrder, updateStatus, getAllOrders, customerSignup, getUsers, customerLogin,
-    addUserShoppingCart, adminLogin, authenticateToken, getUserProfile, updateUser, addProduct, deleteProduct, updateProduct, 
+     adminLogin, authenticateToken, getUserProfile, updateUser, addProduct, deleteProduct, updateProduct, 
     HistoryPurchased, getCart, updateCart, getTotalQty, getTotalPrice
 }

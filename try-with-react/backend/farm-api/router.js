@@ -2,7 +2,7 @@
 import {
   saveProduct, updateQty, getAllProducts,  removeProduct,
   saveOrder, updateStatus, getAllOrders, customerSignup, getUsers, customerLogin,
-  addUserShoppingCart, adminLogin, authenticateToken, getUserProfile, updateUser, addProduct, deleteProduct, updateProduct, 
+  adminLogin, authenticateToken, getUserProfile, updateUser, addProduct, deleteProduct, updateProduct, 
   HistoryPurchased, getCart, updateCart, getTotalQty, getTotalPrice 
 } from './controller.js'
 
