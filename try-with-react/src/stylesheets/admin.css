@@ -1,17 +1,10 @@
-body{
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
-  header{
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-  }  
+ header{
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
 
 .admin-header {
-    font-weight: bold;
     background-color: #FFCF58; /* Dark background color */
     color: #596418; /* White text color */
     padding-left: 30%;
@@ -22,7 +15,6 @@ body{
   }
 
   .navbar-content {
-    font-weight: bold;
     margin-top: 0;
     display: flex;
     justify-content: space-between;
@@ -208,7 +200,6 @@ form {
     padding: 7px;
     width: 90%;
   }
-  
 .product-form {
   padding-left: 25px;
   margin: 0;
@@ -292,6 +283,13 @@ form {
 }
 
 /* USERS CSS */
+
+.main-user-container{
+  padding-top: 80px;
+  background-color: #C8C467;
+  height: 100vh;
+}
+
 .user-container {
   padding: 20px 120px;
   background-color: #f9f9f9;

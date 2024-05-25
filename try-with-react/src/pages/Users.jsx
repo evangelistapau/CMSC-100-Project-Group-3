@@ -23,7 +23,7 @@ const Users = () => {
     }, []);
 
     return (
-        <div className='container'>
+        <div className='main-user-container'>
         <div className='user-container'>
             <h1>User Accounts</h1>
             {loading ? (
