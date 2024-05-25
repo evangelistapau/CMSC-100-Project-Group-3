@@ -13,6 +13,15 @@ const ProductListings = () => {
   const [editing, setEditing] = useState(false);
   const [currentProductId, setCurrentProductId] = useState(null);
 
+  // maps product type to their corresponding numbers
+  const productTypeMapping = {
+    1: 'Staple',
+    2: 'Fruits and Vegetables',
+    3: 'Livestock',
+    4: 'Seafood',
+    5: 'Others'
+  };
+
   const fetchProducts = () => {
     fetch('http://localhost:3000/get-all-products')
       .then(response => response.json())
@@ -159,7 +168,7 @@ const ProductListings = () => {
           {sortedProducts.map((product, index) => (
             <tr key={index}>
               <td>{product.productName || ''}</td>
-              <td>{product.productType || ''}</td>
+              <td>{productTypeMapping[product.productType] || ''}</td> {/* Use the mapping to display the product type name */}
               <td>${(product.productPrice || 0).toFixed(2)}</td>
               <td>{product.productDescription || ''}</td>
               <td>{product.productQuantity || ''}</td>

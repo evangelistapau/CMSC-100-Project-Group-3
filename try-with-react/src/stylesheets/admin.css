@@ -284,10 +284,11 @@ form {
 
 /* USERS CSS */
 
-.main-user-container{
+.main-user-container {
   padding-top: 80px;
   background-color: #C8C467;
   height: 100vh;
+  overflow: hidden; /* Prevent scrolling on the entire page */
 }
 
 .user-container {
@@ -298,6 +299,8 @@ form {
   margin: 20px auto;
   max-width: 600px;
   text-align: left;
+  height: 740px;
+  overflow: hidden; /* Prevent scrolling on the container */
 }
 
 .user-container h1 {
@@ -313,11 +316,12 @@ form {
 .user-container ul {
   list-style: none;
   padding: 0;
+  height: 630px;
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .user-container li {
   background-color: #fff;
-  /* padding: 10px 20px; */
   padding-left: 30px;
   padding-right: 100px;
   padding-top: 10px;
@@ -328,7 +332,7 @@ form {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   text-align: left;
   display: flex;
-  align-items: center; 
+  align-items: center;
   border-radius: 50px;
 }
 
@@ -363,17 +367,17 @@ form {
 
 /* New CSS for admin links */
 .admin-link:link {
-  color: #596418; /* Color of link */
+  color: #596418;
 }
 
 .admin-link:visited {
-  color: #596418; /* Color of visited link */
+  color: #596418;
 }
 
 .admin-link:hover {
-  color: #596418; /* Color of link when hovered over */
+  color: #596418;
 }
 
 .admin-link:active {
-  color: #596418; /* Color of link when clicked */
+  color: #596418;
 }
