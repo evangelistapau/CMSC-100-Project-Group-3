@@ -1,3 +1,4 @@
+
 // import
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
@@ -36,6 +37,7 @@ const subSchema = new mongoose.Schema({
 })
 
 // define and create User model         
+// // define and create User model         
 const User = mongoose.model('User', {
     firstName: {
       type: String,
@@ -45,24 +47,29 @@ const User = mongoose.model('User', {
       type: String,
       required: true
     },
-    username: {
+      username: {
+        type: String,
+        required: true,
+        unique: true
+      },
+      username: {
       type: String,
       required: true,
       unique: true
     },
     userType: {
-      type: String,
-      required: true
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true 
-    },
-    password: {
-      type: String,
-      required: true
-    },
+        type: String,
+        required: true
+      },
+      email: {
+        type: String,
+        required: true,
+        unique: true 
+      },
+      password: {
+        type: String,
+        required: true
+      },
     shoppingCart: [subSchema],
     totalQty: {
       type: Number,
@@ -72,8 +79,21 @@ const User = mongoose.model('User', {
       type: Number,
       default: 0
     }
-}, 'userData'); // collection name: userData
-
+  }, 'userData'); // collection name
+  
+  //define and create user shopping cart model
+  const ShoppingCart = mongoose.model('ShoppingCart', {
+    _id: {
+      type: String
+    },
+    items: {
+      type: [String]
+    },
+    quantity: {
+      type: [Number]
+    }
+  }, 'shoppingCartUser'); // collection name
+  
 // define and create Product model       
 const Product = mongoose.model('Product', {
     // productID: { // added productID (wala sa previous version)
@@ -136,7 +156,69 @@ const Order = mongoose.model('Order', {
 }, 'orderData'); // collection name: orderData
 
 
-// function for Sign-up/Log-in ----------------
+// --------------------------------------------
+// Middleware to authenticate token
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+      return res.status(401).json({ message: 'Access denied. No token provided.' });
+  }
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+      if (err) {
+          return res.status(403).json({ message: 'Invalid token.' });
+      }
+      req.user = { userId: user.userId };  // Explicitly set userId in req.user
+      next();
+  });
+};
+
+// function for User --------------------------
+
+const updateCart = async (req, res) => {              // post method for updating cart
+    res.json(await User.updateOne({email: req.body.email}, {$set: {shoppingCart: req.body.shoppingCart, totalQty: req.body.totalQty, totalPrice: req.body.totalPrice}}))
+};
+
+const getCart = async (req, res) => {
+    res.json(await User.find({email: req.query.email}, { shoppingCart: 1 }))
+};
+
+const getTotalQty = async (req, res) => {
+    res.json(await User.find({email: req.query.email}, { totalQty: 1 }))
+};
+
+const getTotalPrice = async (req, res) => {
+    res.json(await User.find({email: req.query.email}, { totalPrice: 1 }))
+};
+
+  // Endpoint to get the logged-in user's information
+const getUserProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.userId).select('-password');
+        if (!user) return res.status(404).json({ message: 'User not found' });
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+//for bonus
+const HistoryPurchased = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.userId).select('email');
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const orders = await Order.find({ email: user.email, orderStatus: 1 });
+    res.json(orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
 
 const customerSignup = async (req, res) => {                  // post method for saving users
     try {
@@ -207,6 +289,7 @@ const customerLogin = async (req, res) => {                  // post method for 
   
 };
 
+
 const adminLogin = async (req, res) => {                  // post method for saving users
     try {
         // Extract user details from request body
@@ -238,9 +321,9 @@ const adminLogin = async (req, res) => {                  // post method for sav
       } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' });
-      }  
+      }
+  
 };
-
 const getUsers = async (req, res) => {                  // post method for saving users
     try {
         const users = await User.find()
@@ -252,101 +335,50 @@ const getUsers = async (req, res) => {                  // post method for savin
       }
 };
 
-// --------------------------------------------
-// Middleware to authenticate token
-const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+// const authenticateToken = (req, res, next) => {
+//   const token = req.header('Authorization')?.split(' ')[1];
+//   if (!token) return res.status(401).json({ message: 'Access denied. No token provided.' });
 
-  if (!token) {
-      return res.status(401).json({ message: 'Access denied. No token provided.' });
-  }
+//   try {
+//     const decoded = jwt.verify(token, SECRET_KEY);
+//     req.user = decoded;
+//     next();
+//   } catch (error) {
+//     res.status(400).json({ message: 'Invalid token.' });
+//   }
+// };
 
-  jwt.verify(token, SECRET_KEY, (err, user) => {
-      if (err) {
-          return res.status(403).json({ message: 'Invalid token.' });
-      }
-      req.user = { userId: user.userId };  // Explicitly set userId in req.user
-      next();
-  });
-};
+// const findUser = async (req,res) => {
+//   try {
+//     const user = await User.findById(req.user.userId).select('-password'); // Exclude the password field
+//     if (!user) return res.status(404).json({ message: 'User not found' });
+//     res.json(user);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// }
 
-// function for User --------------------------
 
-const updateCart = async (req, res) => {              // post method for updating cart
-    res.json(await User.updateOne({email: req.body.email}, {$set: {shoppingCart: req.body.shoppingCart, totalQty: req.body.totalQty, totalPrice: req.body.totalPrice}}))
-};
+// Endpoint to get the logged-in user's information
 
-const getCart = async (req, res) => {
-    res.json(await User.find({email: req.query.email}, { shoppingCart: 1 }))
-};
-
-const getTotalQty = async (req, res) => {
-    res.json(await User.find({email: req.query.email}, { totalQty: 1 }))
-};
-
-const getTotalPrice = async (req, res) => {
-    res.json(await User.find({email: req.query.email}, { totalPrice: 1 }))
-};
-
-  // Endpoint to get the logged-in user's information
-const getUserProfile = async (req, res) => {
+const addUserShoppingCart = async (req, res) => {                  // post method for saving users
     try {
-        const user = await User.findById(req.user.userId).select('-password');
-        if (!user) return res.status(404).json({ message: 'User not found' });
-        res.json(user);
+        const { _id, items, quantity } = req.body;
+  
+        // Create new shopping cart instance
+        const newShoppingCart = new ShoppingCart({_id, items, quantity });
+  
+        // Save shopping cart to database
+        await newShoppingCart.save();
+  
+        // Send response
+        res.status(201).json({ message: 'Shopping cart created successfully', shoppingCart: newShoppingCart }); // Return the saved shopping cart object
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };
-
-const updateUser = async (req, res) => {
-  const { firstName, lastName, username, email } = req.body;
-
-  try {
-      // Ensure req.user is available and has _id
-      if (!req.user || !req.user.userId) {
-          return res.status(401).json({ message: 'Unauthorized' });
-      }
-
-      // Find the user by their ID
-      const user = await User.findById(req.user.userId);
-
-      if (!user) {
-          return res.status(404).json({ message: 'User not found' });
-      }
-
-      // Update user fields if they're provided in the request body
-      if (firstName) user.firstName = firstName;
-      if (lastName) user.lastName = lastName;
-      if (username) user.username = username;
-
-      // Save the updated user information
-      await user.save();
-
-      res.json({ message: 'User information updated successfully' });
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server error' });
-  }
-};
-
-//for bonus
-const HistoryPurchased = async (req, res) => {
-  try {
-    const user = await User.findById(req.user.userId).select('email');
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    const orders = await Order.find({ email: user.email, orderStatus: 1 });
-    res.json(orders);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
-
 // --------------------------------------------
 
 // function for Product -----------------------
@@ -396,39 +428,59 @@ const removeProduct = async (req, res) => {    //delete a product by product ID
     res.send(await Product.deleteOne({ productID: req.body.productID}))
 }
 
+// Add Product
 const addProduct = async (req, res) => {
-    try {
-      // Extract product details from request body
-      const { productName, productType, productPrice, productDescription, quantity } = req.body;
-  
-      // Check if any field is empty
-      if (!productName || !productType || !productPrice || !productDescription || !quantity) {
-        return res.status(400).json({ message: 'All fields are required' });
-      }      
-        
-      // Create new product instance
-      const newProduct = new Product({ productName, productType, productPrice, productDescription, quantity });
-  
-      // Save product to database
-      const savedProduct = await newProduct.save();
-  
-      // Send response
-      res.status(201).json({ message: 'Product added successfully', product: savedProduct }); // Return the saved product object
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
+  try {
+    const { productName, productType, productPrice, productDescription, productQuantity, productImg } = req.body;
+
+    if (!productName || !productType || !productPrice || !productDescription || !productQuantity || !productImg) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }     
+
+    const newProduct = new Product({ 
+      productName, 
+      productType, 
+      productPrice, 
+      productDescription, 
+      productQuantity,
+      productImg 
+    });
+
+    const savedProduct = await newProduct.save();
+    res.status(201).json({ message: 'Product added successfully', product: savedProduct });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 };
-  
+
+// Delete Product
 const deleteProduct = async (req, res) => {
-    try {
-        const { productId } = req.body;
-        await Product.findByIdAndDelete(productId);
-        res.json({ message: 'Product deleted' });
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+  try {
+    const { productId } = req.body;
+
+    if (!productId) {
+      return res.status(400).json({ message: 'Product ID is required' });
     }
+
+    await Product.findByIdAndDelete(productId);
+    res.json({ message: 'Product deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 };
+
+// Update Product
+const updateProduct = async (req, res) => {
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(updatedProduct);
+  } catch (error) {
+    res.status(500).send('Server Error');
+  }
+};
+
 
 // --------------------------------------------
 
@@ -473,11 +525,38 @@ const getAllOrders = async (req, res) => {              // get method for gettin
         res.json({});
     }
 };
+
+const updateUser = async (req, res) => {
+  const { firstName, lastName, username, email } = req.body;
+    
+  try {
+      // Find the user by their ID (you may need to adjust this based on your application's logic)
+      const user = await User.findById(req.user._id);
+
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Update user fields if they're provided in the request body
+      if (firstName) user.firstName = firstName;
+      if (lastName) user.lastName = lastName;
+      if (username) user.username = username;
+      if (email) user.email = email;
+
+      // Save the updated user information
+      await user.save();
+
+      res.json({ message: 'User information updated successfully' });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+  }
+};
 // --------------------------------------------
 
 export {
-  saveProduct, updateQty, getAllProducts,  removeProduct,
-  saveOrder, updateStatus, getAllOrders, customerSignup, getUsers, customerLogin,
-   adminLogin, authenticateToken, getUserProfile, updateUser, HistoryPurchased, addProduct, deleteProduct,
-   getCart, updateCart, getTotalQty, getTotalPrice
+    saveProduct, updateQty, getAllProducts,  removeProduct,
+    saveOrder, updateStatus, getAllOrders, customerSignup, getUsers, customerLogin,
+    addUserShoppingCart, adminLogin, authenticateToken, getUserProfile, updateUser, addProduct, deleteProduct, updateProduct, 
+    HistoryPurchased, getCart, updateCart, getTotalQty, getTotalPrice
 }

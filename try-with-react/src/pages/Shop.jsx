@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import Popup from './Popup';
@@ -123,12 +124,14 @@ export default function Shop() {
         flag++;                                 // increments flag
         product.count++;                        // increments the product count
         setPrice(totalPrice+product.productPrice);
+        setPrice(totalPrice+product.productPrice);
         break;
       }
     }
     if(flag == 0){                                    // if the item is not in the list yet
       const countField = {...item, count: 1, totalQty: 0, totalPrice: 0};         // adds a new field to the object (count: 1)
       setCart([...cart, countField]);                 // appends the object to the cart list
+      setPrice(totalPrice+countField.productPrice);
       setPrice(totalPrice+countField.productPrice);
     }
 

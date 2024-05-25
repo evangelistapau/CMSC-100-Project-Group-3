@@ -1,9 +1,11 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Routes } from 'react-router-dom';
 import './stylesheets/customer.css';
 import './stylesheets/admin.css';
 import './stylesheets/signup-login.css';
+
 
 
 import Signup from './pages/Signup';
@@ -13,14 +15,24 @@ import Root from './pages/Root';
 import Shop from './pages/Shop';
 import OrderSummary from './pages/OrderSummary';
 import Orders from './pages/Orders';
-import Profile from './pages/Profile';
-
 import AdminDashboard from './pages/AdminDashboard';
 import RootAdmin from './pages/RootAdmin';
+import Profile from './pages/Profile';
 import Users from './pages/Users';
 import Listings from './pages/Listings';
 import Fulfillment from './pages/Fulfillment';
 import Sales from './pages/Sales';
+
+
+// const router = createBrowserRouter([
+//   { path: '/', element: <Root />, children: [
+//     { path: '/', element: <Shop /> },
+//     { path: '/order-summary', element: <OrderSummary /> },
+//     { path: '/orders', element: <Orders /> }
+//   ]}
+// ])
+
+
 
 const router = createBrowserRouter([
   { path: '/', element: <Signup />},
