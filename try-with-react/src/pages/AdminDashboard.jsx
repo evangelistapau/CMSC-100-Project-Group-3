@@ -1,16 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import usersImage from '../assets/users.png';
 import listingsImage from '../assets/listings.png';
 import fulfillmentImage from '../assets/fulfillment.png';
 import salesImage from '../assets/sales.png';
 
 function AdminDashboard() {
+
+  const navigate = useNavigate();
+  const Logout = () => {
+    localStorage.removeItem('token');
+    navigate('/login-admin');
+  };
   return (
     <>
       <header className='admin-header'>
-        {/* <div className="left-header">Farm-To-Table Admin</div> */}
+
         <div className="right-header">Welcome back, Admin!</div>
+        <button onClick={Logout}className='signoutBTN'>Log out</button>
       </header>
       <div className='admin-dashboard-container'>
         <center>

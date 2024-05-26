@@ -17,6 +17,9 @@ export default function AdminLogin() {
             if (token) {
                 alert(message);
                 localStorage.setItem('token', token); 
+                localStorage.setItem('role', 'admin'); 
+                
+                // login(token);
                 navigate('/admin-dashboard');  
             } else {
                 alert(message);
@@ -35,7 +38,7 @@ export default function AdminLogin() {
             <div>
                 <div className='Signup-Card'>
                     <form onSubmit={handleSubmit}>
-                        <center><p className="auth-title">Admin Log-in</p></center>
+                        <center><p className="login-title">Admin Login</p></center>
                         <div className='form-group'>
                             <input className="auth-input" type='text' name='username' value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' />
                         </div>

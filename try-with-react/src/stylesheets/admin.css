@@ -5,11 +5,12 @@
 }
 
 .admin-header {
-    background-color: #FFCF58; /* Dark background color */
-    color: #596418; /* White text color */
+  
+    background-color: #FFCF58; 
+    color: #596418;
     padding-left: 30%;
-    text-align: center; /* Center the text */
-    font-size: 1.5em; /* Font size for the heading */
+    text-align: center; 
+    font-size: 1.5em; 
     padding-top: 20px;
     padding-bottom: 20px;
   }
@@ -20,9 +21,9 @@
     justify-content: space-between;
     align-items: center;
     background-color: #FFCF58;
-    padding-left: 120px; /* Remove or adjust these padding values */
-    padding-right: 120px; /* Remove or adjust these padding values */
-    padding-top: 0; /* Adjusted to remove space at the top */
+    padding-left: 120px;
+    padding-right: 120px; 
+    padding-top: 0; 
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
@@ -381,3 +382,4 @@ form {
 .admin-link:active {
   color: #596418;
 }
+
