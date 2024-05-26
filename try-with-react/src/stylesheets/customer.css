@@ -175,6 +175,13 @@ header{
 .product-price{
   font-family: "Roca Light";
   margin-block-start: 5px;
+  margin-block-end: 10px;
+}
+
+.product-type{
+  font-family: "Roca Light";
+  font-size: 10.5px;
+  margin-block-start: 0px;
   margin-block-end: 15px;
 }
 

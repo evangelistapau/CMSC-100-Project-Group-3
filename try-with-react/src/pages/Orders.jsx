@@ -90,7 +90,7 @@ export default function Orders() {
                   <span className="order-label">Transaction ID: </span>
                   <span className="order-value">{item.transactionID}</span><br />
                   <span className="order-label">Order Status: </span>
-                  <span className="order-value">{item.orderStatus == "0" ? "Pending" : item.orderStatus == "1" ? "Confirmed" : "Cancelled"}</span><br />
+                  <span className="order-value">{item.orderStatus == "0" ? "Pending" : item.orderStatus == "1" ? "Confirmed (ready for delivery)" : "Cancelled"}</span><br />
                   <span className="order-label">Items:</span>
                   <ul className="order-items">
                     {item.productNames.map((prod, index) => (

@@ -193,9 +193,10 @@ export default function Shop() {
                 <img src={item.productImg} className="product-img"></img>
                 <p className="product-name">{item.productName}</p>
                 <p className="product-price">P{item.productPrice}.00</p>
+                <p className="product-type">Type: {item.productType == "1" ? "Staple" : item.productType == "2" ? "Fruits & Vegetables" : item.productType == "3" ? "Livestock" : item.productType == "4" ? "Seafood" : "Others"}</p>
                 <button onClick={() => openPopup(index)} className="product-desc">View description &gt;</button>
                 <div className="popup">
-                  {showPopup == index && <Popup description={item.productDescription} closePopup={closePopup} />}
+                {showPopup == index && <Popup description={item.productDescription} stock={item.productQuantity} closePopup={closePopup} />}
                 </div>
                 <button onClick={() => addToCart(item)} className="product-add-btn">Add To Cart</button>
               </div>
