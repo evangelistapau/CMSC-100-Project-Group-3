@@ -1,13 +1,13 @@
+
 import {
-  customerSignup, customerLogin, adminLogin, getUsers,
-  updateCart, getCart, getTotalQty, getTotalPrice, authenticateToken, getUserProfile, updateUser,
-  saveProduct, updateQty, getAllProducts, removeProduct, addProduct, deleteProduct,
-  saveOrder, updateStatus, getAllOrders, HistoryPurchased
+  saveProduct, updateQty, getAllProducts,  removeProduct,
+  saveOrder, updateStatus, getAllOrders, customerSignup, getUsers, customerLogin,
+  adminLogin, authenticateToken, getUserProfile, updateUser, addProduct, deleteProduct, updateProduct, 
+  HistoryPurchased, getCart, updateCart, getTotalQty, getTotalPrice 
 } from './controller.js'
 
 
 export default function router(app) {
-
 	// Allow Cross Origin Resource Sharing
   app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -35,6 +35,7 @@ export default function router(app) {
   app.get('/get-all-products', getAllProducts)
   app.post('/add-product', addProduct)
   app.post('/delete-product', deleteProduct)
+  app.put('/update-product/:id', updateProduct)
 
   app.post('/save-order', saveOrder)                  // order
   app.post('/update-status', updateStatus)

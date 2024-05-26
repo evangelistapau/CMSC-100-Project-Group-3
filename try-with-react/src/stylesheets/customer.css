@@ -95,6 +95,28 @@ header{
   text-decoration: underline;
 }
 
+.signoutBTN {
+  font-family: "Lato Regular";
+  color: white;
+  font-size: 15px;
+  padding: 8px;
+  border: 0 none;
+  border-radius: 5px;
+  background-color: #596418;
+}
+.signoutBTN:hover {
+  font-family: "Lato Regular";
+  color: #596418;
+  font-size: 15px;
+  padding: 8px;
+  border: 0 none;
+  border-radius: 5px;
+  border-color: #596418;
+  background-color: white;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
 /*------------------------------------*/
 
 
@@ -175,6 +197,13 @@ header{
 .product-price{
   font-family: "Roca Light";
   margin-block-start: 5px;
+  margin-block-end: 10px;
+}
+
+.product-type{
+  font-family: "Roca Light";
+  font-size: 10.5px;
+  margin-block-start: 0px;
   margin-block-end: 15px;
 }
 

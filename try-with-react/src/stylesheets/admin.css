@@ -1,0 +1,385 @@
+ header{
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.admin-header {
+  
+    background-color: #FFCF58; 
+    color: #596418;
+    padding-left: 30%;
+    text-align: center; 
+    font-size: 1.5em; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .navbar-content {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFCF58;
+    padding-left: 120px;
+    padding-right: 120px; 
+    padding-top: 0; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+.admin-navbar-content {
+    color: #596418;
+      font-weight: bold;
+      margin-top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FFCF58;
+      padding-left: 120px; /* Remove or adjust these padding values */
+      padding-right: 120px; /* Remove or adjust these padding values */
+      padding-top: 0; /* Adjusted to remove space at the top */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  
+.admin-navbar-title {
+    color: #596418;
+}
+
+.navbar-links{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+  }
+  
+  .navbar-links li {
+    padding: 0px 50px 0px 50px;
+  }
+
+.delete-button {
+    background: #F24900;
+    color: #fff;
+    border: none;
+    padding: 7px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+  .delete-button:hover {
+    background-color: darkred;
+  }
+  
+  .edit-button {
+    background: #F29400;
+    color: #fff;
+    border: none;
+    padding: 7px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .edit-button:hover {
+    background-color: #D18206;
+  }
+
+
+  .admin-dashboard-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh;
+    width: 100%;
+    background-color:#C8C467;
+}
+
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  background-color:#C8C467;
+}
+
+.category-cards {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap */
+  justify-content: center; /* Center cards horizontally */
+  gap: 20px;
+  padding-top: 40px; 
+}
+
+.category-card {
+  background-color: white;
+  width: 260px;
+  padding: 180px 30px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;; 
+}
+
+.category-card:hover {
+  background-color: #e6e6e6;
+  transform: translateY(-10px);
+}
+
+.category-image {
+  width: 60%;
+  height: 60%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+/* PRODUCT LISTINGS */
+
+.product-listings-main {
+  background-color: #C8C467;
+  padding-top: 80px;
+  margin: 0; /* Center the container horizontally */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: row; /* Arrange items horizontally */
+  justify-content: space-between; /* Space evenly between items */
+}
+
+/* Styling for sorting options */
+.sorting-options {
+  margin-bottom: 20px;
+}
+
+.sorting-options label {
+  margin-right: 10px;
+}
+
+.sorting-options button {
+  background: #F29400;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.sorting-options button:hover {
+  background-color: #D18206;
+}
+
+/* Styling for tables */
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: whitesmoke;
+  margin-bottom: 20px;
+}
+
+.products-table th, td {
+  padding: 10px; /* Padding for table cells */
+  border: 1px solid #ddd; /* Border for table cells */
+  text-align: left;
+}
+
+.products-table th {
+  background-color: #f2f2f2; /* Background color for table header */
+}
+
+/* Styling for forms */
+
+form {
+    width: 80%;
+  }
+  
+  .form-group {
+    padding: 5px;
+    justify-content: center;
+  }
+  
+  input {
+  
+    padding: 7px;
+    width: 90%;
+  }
+.product-form {
+  padding-left: 25px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group select {
+  margin-top: 0;
+  width: 96%;
+  padding: 6px;
+}
+
+.submit-product {
+  color: white;
+  width: 96%;
+  padding: 6px;
+  background-color: #F29400;
+  border-width: 1px;
+}
+
+.submit-product:hover {
+  background-color: #D18206;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.sorting-options select {
+  padding: 8px 12px;
+}
+
+/* Styling for product listings left container */
+.product-listings-left {
+  flex: 1; /* Take up remaining space */
+  margin-left: 50px;
+  padding-right: 20px;
+  padding-left: 20px; /* Add some space between the table and form */
+}
+
+
+/* Styling for product listings right container */
+.product-listings-right {
+  margin-top: 136px;
+  margin-right: 50px;
+  padding-left: 20px;
+  margin-bottom: 0;
+  background-color: whitesmoke;
+  padding-bottom: 0;
+  height: 65vh;
+}
+
+.product-listings-right h2 {
+  padding-left: 25px;
+  margin-top: 20px;
+}
+
+/* Styling for product cards */
+.product-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.product-card h2 {
+  margin-top: 0;
+}
+
+.product-card p {
+  margin: 5px 0;
+}
+
+/* Styling for food card images */
+.food-card img {
+  width: 100%;
+  height: auto;
+}
+
+/* USERS CSS */
+
+.main-user-container {
+  padding-top: 80px;
+  background-color: #C8C467;
+  height: 100vh;
+  overflow: hidden; /* Prevent scrolling on the entire page */
+}
+
+.user-container {
+  padding: 20px 120px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: left;
+  height: 740px;
+  overflow: hidden; /* Prevent scrolling on the container */
+}
+
+.user-container h1 {
+  color: #596418;
+  margin-bottom: 20px;
+}
+
+.user-container p {
+  font-size: 18px;
+  color: #555;
+}
+
+.user-container ul {
+  list-style: none;
+  padding: 0;
+  height: 630px;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.user-container li {
+  background-color: #fff;
+  padding-left: 30px;
+  padding-right: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+}
+
+.user-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-fullname {
+  margin: 5px 0;
+  font-size: 28px;
+  font-weight: bold;
+  color: #596418;
+}
+
+.user-email {
+  margin: 5px 0;
+  font-size: large;
+}
+
+.username {
+  font-size: large;
+}
+
+/* New CSS for admin links */
+.admin-link:link {
+  color: #596418;
+}
+
+.admin-link:visited {
+  color: #596418;
+}
+
+.admin-link:hover {
+  color: #596418;
+}
+
+.admin-link:active {
+  color: #596418;
+}
+

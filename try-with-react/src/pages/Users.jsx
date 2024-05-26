@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import usersImage from '../assets/users.png';
 
 const Users = () => {
     const [users, setUsers] = useState([]);
@@ -22,22 +23,29 @@ const Users = () => {
     }, []);
 
     return (
-        <div className='container'>
-            <h2>User Accounts</h2>
+        <div className='main-user-container'>
+        <div className='user-container'>
+            <h1>User Accounts</h1>
             {loading ? (
                 <p>Loading...</p>
             ) : (
                 <div>
-                    <p>Total Users: {users.length}</p>
                     <ul>
                         {users.map(user => (
-                            <li key={user._id}>
-                                {user.firstName} {user.lastName} - {user.email}
-                            </li>
+                            <li key={user._id} className='user-item'>
+                            <img src={usersImage} alt="User" className="user-image" />
+                            <div className='user-info'>
+                                <div className='user-fullname'>{user.firstName} {user.lastName}</div>
+                                <div className='user-email'><strong>Email:</strong> {user.email}</div>
+                                <div className='username'><strong>Username:</strong> {user.username}</div>
+                            </div>
+                        </li>
                         ))}
                     </ul>
+                    <p>Total Users: {users.length}</p>
                 </div>
             )}
+        </div>
         </div>
     );
 };
