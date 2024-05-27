@@ -16,13 +16,15 @@ function AdminDashboard() {
   };
   return (
     <>
-      <header className='admin-header'>
-      <div className="logo-container">
-              <img src={logo} className="logo-img"/>
-              <p className="logo-title">Farm-To-Table</p>
-              </div>
-        <div className="right-header">Welcome back, Admin!</div>
-        <button onClick={Logout}className='signoutBTN'>Log out</button>
+      <header className="admin-navbar-container">
+        <div className="admin-logo-container">
+          <img src={logo} className="logo-img" alt="Logo" />
+          <p className="admin-logo-title">F-2-T Admin</p>
+        </div>
+        <div className="header-right">
+          <span>Welcome back, Admin!</span>
+          <button onClick={Logout} className="admin-signoutBTN">Log out</button>
+        </div>
       </header>
       <div className='admin-dashboard-container'>
         <center>

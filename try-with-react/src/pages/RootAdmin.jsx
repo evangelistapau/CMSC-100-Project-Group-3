@@ -8,7 +8,7 @@ export default function RootAdmin() {
         <section className="admin-navbar-container">
         <div className="logo-container">
               <img src={logo} className="logo-img"/>
-              <p className="logo-title">Farm-To-Table</p>
+              <p className="logo-title">F-2-T Admin</p>
               </div>
           <nav>
             <ul className="navbar-links">
