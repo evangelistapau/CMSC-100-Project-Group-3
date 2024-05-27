@@ -4,12 +4,16 @@ import usersImage from '../assets/users.png';
 import listingsImage from '../assets/listings.png';
 import fulfillmentImage from '../assets/fulfillment.png';
 import salesImage from '../assets/sales.png';
+import logo from '../images/logo.png';
 
 function AdminDashboard() {
   return (
     <>
       <header className='admin-header'>
-        {/* <div className="left-header">Farm-To-Table Admin</div> */}
+      <div className="logo-container">
+              <img src={logo} className="logo-img"/>
+              <p className="logo-title">Farm-To-Table</p>
+              </div>
         <div className="right-header">Welcome back, Admin!</div>
       </header>
       <div className='admin-dashboard-container'>

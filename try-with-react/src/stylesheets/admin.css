@@ -4,14 +4,42 @@
   z-index: 1000;
 }
 
+.admin-navbar-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 120px 5px 120px;
+  background-color: #FFCF58;
+  box-shadow: 0px -10px 20px rgba(0, 0, 0, 1);
+}
+
+.logo-container{
+  display: flex;
+  align-items: center;
+}
+
+.logo-img{
+  width: 55px;
+  height: auto;
+}
+
+.logo-title{
+  font-family: "Roca Heavy";
+  font-size: 25px;
+  color: #596418;
+  margin-block-start: 0.8em;
+  margin-left: 15px;
+}
+
 .admin-header {
-    background-color: #FFCF58; /* Dark background color */
-    color: #596418; /* White text color */
+    background-color: #FFCF58; 
+    color: #596418; 
     padding-left: 30%;
-    text-align: center; /* Center the text */
-    font-size: 1.5em; /* Font size for the heading */
+    text-align: center; 
+    font-size: 1.5em; 
     padding-top: 20px;
     padding-bottom: 20px;
+    font-weight: bold;
   }
 
   .navbar-content {
@@ -20,13 +48,13 @@
     justify-content: space-between;
     align-items: center;
     background-color: #FFCF58;
-    padding-left: 120px; /* Remove or adjust these padding values */
-    padding-right: 120px; /* Remove or adjust these padding values */
-    padding-top: 0; /* Adjusted to remove space at the top */
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-top: 0; 
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
-.admin-navbar-content {
+/* .admin-navbar-content {
     color: #596418;
       font-weight: bold;
       margin-top: 0;
@@ -34,11 +62,11 @@
       justify-content: space-between;
       align-items: center;
       background-color: #FFCF58;
-      padding-left: 120px; /* Remove or adjust these padding values */
-      padding-right: 120px; /* Remove or adjust these padding values */
-      padding-top: 0; /* Adjusted to remove space at the top */
+      padding-left: 120px; 
+      padding-right: 120px; 
+      padding-top: 0; 
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
+    } */
   
 .admin-navbar-title {
     color: #596418;
@@ -52,6 +80,8 @@
   }
   
   .navbar-links li {
+    font-family: "Roca Black";
+    font-size: 20px;
     padding: 0px 50px 0px 50px;
   }
 
@@ -85,21 +115,22 @@
   }
 
 
-  .admin-dashboard-container {
+.admin-dashboard-container {
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     height: 100vh;
-    width: 100%;
     background-color:#C8C467;
+    padding-top: 10px;
 }
-
+/* 
 .admin-dashboard {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center content horizontally */
+  align-items: center;
   background-color:#C8C467;
-}
+  padding: 10px 10px;
+} */
 
 .category-cards {
   display: flex;
@@ -188,6 +219,7 @@
 
 form {
     width: 80%;
+
   }
   
   .form-group {
@@ -196,14 +228,12 @@ form {
   }
   
   input {
-  
     padding: 7px;
     width: 90%;
   }
 .product-form {
   padding-left: 25px;
   margin: 0;
-  display: flex;
   flex-direction: column;
 }
 
