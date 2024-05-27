@@ -45,11 +45,20 @@
 
 .auth-title{
     font-family: "Roca Black";
-    font-size: 30px;
-    margin: 5px 0px 30px 0px;
+    font-size: 27px;
+    margin: 5px;
+    margin-top: 0px;
+}
+
+.login-title{
+    margin-top: 0px;
+    font-family: "Roca Black";
+    font-size: 27px;
+
 }
 
 .Signup-Card {
+
     background-color: white;
     height: 600px;
     width: 450px;
@@ -65,6 +74,7 @@
 }
 
 .auth-form {
+    /* padding-top: 30px; */
     width: 80%;
 }
   
@@ -74,26 +84,30 @@
 }
   
 .auth-input {
-    padding: 7px;
+    padding: 10px;
     width: 90%;
 }
 
 .LoginAdmin {
-    background-color:  #C8C467;
+    background-color:  #596418;
     height: 100vh; /* Ensure the background covers the full height */
-}
+  }
+  
 
 .login-message{
-    font-family: "Lato Bold";
+    font-family: "Lato Regular";
+    font-size: 13px;
+    
 }
 
 .auth-submit-btn{
-    font-family: "Lato Bold";
+    width: 94%;
+    font-family: "Lato Regular";
     font-size: 15px;
     color: white;
-    padding: 7px 10px;
+    padding: 8px;
     border: 0 none;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #F29400;
     transition: color 0.3s ease-in-out;
   }
@@ -104,12 +118,13 @@
 }
 
 .auth-admin-submit-btn{
-    font-family: "Lato Bold";
+    width: 94%;
+    font-family: "Lato Regular";
     font-size: 15px;
     color: white;
-    padding: 7px 10px;
+    padding: 8px;
     border: 0 none;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #9e9b43;
     transition: color 0.3s ease-in-out;
   }
@@ -120,12 +135,13 @@
 }
 
 .auth-merchant-btn{
-    font-family: "Lato Bold";
+    width: 94%;
+    font-family: "Lato Regular";
     font-size: 15px;
     color: white;
-    padding: 7px 10px;
+    padding: 8px;
     border: 0 none;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #596418;
     transition: color 0.3s ease-in-out;
   }
@@ -136,11 +152,12 @@
 }
 
 .auth-back-btn{
-    font-family: "Lato Bold";
+    width: 94%;
+    font-family: "Lato Regular";
     font-size: 15px;
-    padding: 7px 10px;
+    padding: 8px;
     border: 0 none;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #985B40;
 }
 

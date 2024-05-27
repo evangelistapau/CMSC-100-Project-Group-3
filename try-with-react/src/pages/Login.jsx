@@ -17,6 +17,7 @@ export default function Login() {
             if (token) {
                 alert(message);
                 localStorage.setItem('token', token); 
+                localStorage.setItem('role', 'user'); 
                 navigate(`/root/shop`);  // Navigate to shop page
             } else {
                 alert(message);
@@ -35,7 +36,7 @@ export default function Login() {
             <div>
                 <div className='Signup-Card'>
                     <form onSubmit={handleSubmit}>
-                        <center><p className="auth-title">Log-in</p></center>
+                        <center><p className="login-title">Login</p></center>
                         <div className='form-group'>
                             <input className="auth-input" type='text' name='username' value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Username' />
                         </div>

@@ -6,7 +6,6 @@ import logo from '../images/logo.png';
 
 export default function Signup() {
 
-    const [user, setUser]   = useState([])
     const [firstName, setFirstname] = useState('')
     const [lastName, setLastname] = useState('')
     const [userType, setType] = useState('customer')
@@ -62,6 +61,8 @@ export default function Signup() {
                 setEmail('');
                 // Fetch users or do any other necessary actions
                 fetchUsers();
+
+                alert('Sign up successful!'); // Add this line
             })
             .catch((error) => {
             // Show specific error message in an alert box
@@ -104,7 +105,7 @@ export default function Signup() {
                         </div>
                         <p className="login-message">Already have an account? <Link to={`/login`}>Log-in</Link></p>
                         <button className="auth-submit-btn" type='submit'>Sign Up</button>
-                        <p className="login-message">or</p>
+                       <p className="login-message">or</p>
                         <Link to="login-admin">
                         <button className="auth-merchant-btn" type='button'>Login as Merchant</button>
                     </Link>

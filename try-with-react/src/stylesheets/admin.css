@@ -49,7 +49,7 @@
     align-items: center;
     background-color: #FFCF58;
     padding-left: 120px;
-    padding-right: 120px;
+    padding-right: 120px; 
     padding-top: 0; 
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
@@ -411,3 +411,4 @@ form {
 .admin-link:active {
   color: #596418;
 }
+
