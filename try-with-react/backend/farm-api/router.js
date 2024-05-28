@@ -40,7 +40,6 @@ export default function router(app) {
   app.post('/save-order', saveOrder)                  // order
   app.post('/update-status', updateStatus)
   app.get('/get-all-orders', getAllOrders)
-  // app.get('/get-user-orders',authenticateToken, getUserOrder) //get the specific orders for the logged in user
   app.get('/get-completed-orders',authenticateToken,  HistoryPurchased) //get the completed orders only
-  // app.get('/get-user-email', authenticateToken, getUserEmail);  //get the email of the logged in user
+
 }
