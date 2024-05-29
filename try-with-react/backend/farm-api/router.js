@@ -40,6 +40,5 @@ export default function router(app) {
   app.post('/save-order', saveOrder)                  // order
   app.post('/update-status', updateStatus)
   app.get('/get-all-orders', getAllOrders)
-  app.get('/get-completed-orders',authenticateToken,  HistoryPurchased) //get the completed orders only
-
+  app.get('/get-completed-orders',authenticateToken, HistoryPurchased) //get the completed orders only
 }

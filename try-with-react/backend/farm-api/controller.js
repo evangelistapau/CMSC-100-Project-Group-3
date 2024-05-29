@@ -78,9 +78,6 @@ const User = mongoose.model('User', {
   
 // define and create Product model       
 const Product = mongoose.model('Product', {
-    // productID: { // added productID (wala sa previous version)
-    //   type: String,
-    // },
     productName: {
       type: String,
     },
@@ -370,8 +367,8 @@ const saveProduct = async (req, res) => {// post method for saving products
 
 const updateQty = async (req, res) => {                 // post method for decreasing product quantity
     res.json(await Product.updateOne(
-        {productID: req.body.productID}, 
-        {$inc: {productQuantity: -1}}
+        {_id: req.body.id}, 
+        {$inc: {productQuantity: -req.body.quantity}}
     ))
 };
 

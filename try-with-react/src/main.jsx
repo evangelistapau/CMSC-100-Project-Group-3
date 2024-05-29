@@ -19,6 +19,7 @@ import Users from './pages/Users';
 import Listings from './pages/Listings';
 import Fulfillment from './pages/Fulfillment';
 import Sales from './pages/Sales';
+import SalesProducts from './pages/SalesProducts';
 import ProtectedRoute from './authentication/ProtectedRoute';
 import UnauthorizedPage from './authentication/Unauthorized';
 
@@ -64,6 +65,7 @@ const router = createBrowserRouter([
       { path: 'listings', element: <Listings /> },
       { path: 'fulfillment', element: <Fulfillment /> },
       { path: 'sales', element: <Sales /> },
+      { path: 'sales-products', element: <SalesProducts /> },
     ],
   },
   //redirect here if a certain role tried accessing other role

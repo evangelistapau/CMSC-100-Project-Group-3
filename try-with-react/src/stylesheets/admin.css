@@ -1,14 +1,59 @@
+@font-face{
+  font-family: "Roca Heavy";
+  src: url("../fonts/Roca-Heavy.ttf");
+}
+
+@font-face{
+  font-family: "Roca Black";
+  src: url("../fonts/Roca-Black.ttf");
+}
+
+@font-face{
+  font-family: "Roca Bold";
+  src: url("../fonts/Roca-Bold.ttf");
+}
+
+@font-face{
+  font-family: "Roca Regular";
+  src: url("../fonts/Roca-Regular.ttf");
+}
+
+@font-face{
+  font-family: "Roca Light";
+  src: url("../fonts/Roca-Light.ttf");
+}
+
+@font-face{
+  font-family: "Lato Bold";
+  src: url("../fonts/Lato-Bold.ttf");
+}
+
+@font-face{
+  font-family: "Lato Regular";
+  src: url("../fonts/Lato-Regular.ttf");
+}
+
+body{
+  margin: 0;
+  background-color: #FEF1CF;
+}
+
 header {
   position: fixed;
   width: 100%;
   z-index: 1000;
-  background-color: #FFCF58;
+  background-color: #FEF1CF;
   box-shadow: 0px -10px 20px rgba(0, 0, 0, 1);
+}
+
+.welcome-admin{
+  font-family: "Roca Bold";
 }
 
 .admin-navbar-container {
   display: flex;
   justify-content: space-between;
+  padding: 5px 120px 5px 120px;
   align-items: center;
 }
 
@@ -45,7 +90,6 @@ header {
 .admin-logo-container {
   display: flex;
   align-items: center;
-  padding: 2px 120px;
 }
 
 .logo-img {
@@ -96,6 +140,8 @@ header {
   cursor: pointer;
 }
 
+/* ADMIN DASHBOARD */
+
 .admin-dashboard-container {
   display: flex;
   justify-content: center;
@@ -126,13 +172,17 @@ header {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.admin-link {
+  font-family: "Roca Bold";
+}
+
 .category-card:hover {
   background-color: #e6e6e6;
   transform: translateY(-10px);
 }
 
 .category-image {
-  width: 60%;
+  width: 70%;
   height: 60%;
   object-fit: cover;
   margin-bottom: 10px;
@@ -142,11 +192,15 @@ header {
 
 .product-listings-main {
   background-color: #C8C467;
-  padding-top: 80px;
+  padding-top: 110px;
   margin: 0; /* Center the container horizontally */
   display: flex; /* Use flexbox for layout */
   flex-direction: row; /* Arrange items horizontally */
   justify-content: space-between; /* Space evenly between items */
+}
+
+.sort-product-listings{
+  font-family: "Lato Bold";
 }
 
 /* Styling for sorting options */
@@ -175,38 +229,65 @@ header {
 /* Styling for tables */
 .products-table {
   width: 100%;
-  border-collapse: collapse;
-  background-color: whitesmoke;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 .products-table th, td {
   padding: 10px; /* Padding for table cells */
-  border: 1px solid #ddd; /* Border for table cells */
+  text-align: left;
+}
+
+.products-table td {
+  padding: 10px; /* Padding for table cells */
+  /* border: 1px solid #ddd; Border for table cells */
   text-align: left;
 }
 
 .products-table th {
-  background-color: #f2f2f2; /* Background color for table header */
+  background-color: #ebebeb; /* Background color for table header */
+  font-family: "Roca Bold";
+}
+
+.products-table td {
+  background-color: whitesmoke; 
+  font-family: "Lato Regular";
+  font-size: 15px;
+}
+
+.products-table th:first-of-type{
+  border-top-left-radius: 15px;
+}
+
+.products-table th:last-of-type{
+  border-top-right-radius: 15px;
+}
+
+.products-table tr:last-of-type td:first-of-type{
+  border-bottom-left-radius: 15px;
+}
+
+.products-table tr:last-of-type td:last-of-type{
+  border-bottom-right-radius: 15px;
 }
 
 /* Styling for forms */
 
 form {
-    width: 80%;
-  }
+  width: 80%;
+}
   
-  .form-group {
-    padding: 5px;
-    justify-content: center;
-  }
-  
-  input {
-  
-    padding: 7px;
-    width: 90%;
-  }
+.form-group {
+  padding: 5px;
+  justify-content: center;
+}
+
+input {
+  padding: 7px;
+  width: 90%;
+}
+
 .product-form {
+  font-family: "Lato Regular";
   padding-left: 25px;
   margin: 0;
   display: flex;
@@ -215,6 +296,7 @@ form {
 
 .input-group {
   margin-bottom: 15px;
+  font-family: "Lato Regular";
 }
 
 .input-group select {
@@ -240,27 +322,31 @@ form {
   padding: 8px 12px;
 }
 
-/* Styling for product listings left container */
 .product-listings-left {
   flex: 1; /* Take up remaining space */
   margin-left: 50px;
   padding-right: 20px;
-  padding-left: 20px; /* Add some space between the table and form */
+  padding-left: 20px;
 }
 
+.product-listings-left h1 {
+  font-family: "Roca Bold";
+}
 
 /* Styling for product listings right container */
 .product-listings-right {
-  margin-top: 136px;
-  margin-right: 50px;
+  margin-top: 146px;
+  margin-right: 70px;
   padding-left: 20px;
   margin-bottom: 0;
   background-color: whitesmoke;
-  padding-bottom: 0;
-  height: 65vh;
+  padding-bottom: 50px;
+  height: 100%;
+  border-radius: 15px;
 }
 
 .product-listings-right h2 {
+  font-family: "Roca Bold";
   padding-left: 25px;
   margin-top: 20px;
 }
@@ -291,55 +377,65 @@ form {
 /* USERS CSS */
 
 .main-user-container {
-  padding-top: 80px;
-  background-color: #C8C467;
-  height: 100vh;
-  overflow: hidden; /* Prevent scrolling on the entire page */
+  padding-top: 110px;
+  background: linear-gradient(135deg, #C8C467 0%, #D4D97D 100%); /* Added gradient background */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden; 
 }
 
 .user-container {
-  padding: 20px 120px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
+  padding: 20px 40px; /* Enhanced padding for better spacing */
+  background: #ffffff; /* Set solid background color */
+  border-radius: 15px; /* Increased border-radius for smoother corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increased shadow for depth */
+  margin: 20px;
   max-width: 600px;
+  width: 100%; /* Make container responsive */
   text-align: left;
-  height: 740px;
-  overflow: hidden; /* Prevent scrolling on the container */
+  height: auto;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .user-container h1 {
-  color: #596418;
+  color: black;
   margin-bottom: 20px;
+  font-family: "Roca Bold";
 }
 
 .user-container p {
   font-size: 18px;
   color: #555;
+  font-family: "Lato Regular";
 }
 
 .user-container ul {
   list-style: none;
   padding: 0;
-  height: 630px;
-  overflow-y: auto; /* Enable vertical scrolling */
+  margin: 0;
+  max-height: calc(100% - 60px);
+  overflow-y: auto;
+  padding-bottom: 20px;
 }
 
 .user-container li {
   background-color: #fff;
-  padding-left: 30px;
-  padding-right: 100px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  padding: 15px 20px; 
+  margin-bottom: 15px; 
   border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  border-radius: 10px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  border-radius: 50px;
+  transition: transform 0.3s, box-shadow 0.2s;
+}
+
+.user-container li:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
 }
 
 .user-image {
@@ -357,22 +453,26 @@ form {
 
 .user-fullname {
   margin: 5px 0;
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 24px;
   color: #596418;
+  font-family: "Roca Regular"; 
 }
 
-.user-email {
+.user-email, .username {
   margin: 5px 0;
-  font-size: large;
-}
-
-.username {
-  font-size: large;
+  font-size: 16px;
+  color: #333;
+  font-family: "Lato Regular";
 }
 
 .admin-link:link, .admin-link:visited, .admin-link:hover, .admin-link:active {
   color: #596418;
+  text-decoration: none; 
+}
+
+/* Custom scrollbar with curved sides */
+.user-container::-webkit-scrollbar {
+  width: 10px;
 }
 
 /* -----------Fulfillment CSS--------------------- */
@@ -383,7 +483,7 @@ form {
   background-color: #C8C468;
   width: 100%;
   height: 100vh;
-  padding: 20px;
+  padding: 100px 20px 20px 20px;
   box-sizing: border-box;
 }
 
@@ -407,7 +507,10 @@ form {
 }
 
 .fulfillment-order-title, 
-.fulfillment-product-title, 
+.fulfillment-product-title{
+  font-family: "Roca Bold";
+}
+
 .fulfillment-order-table td, 
 .fulfillment-order-table th, 
 .fulfillment-product-table td, 
@@ -415,7 +518,7 @@ form {
 .fulfillment-product-total-items p, 
 .fulfillment-product-total-cost p, 
 button {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Lato Regular";
 }
 
 
@@ -466,7 +569,7 @@ button {
   position: sticky;
   top: 0;
   z-index: 1;
-  width: 100%; /* Ensure the thead takes full width */
+  width: 100%; /*Ensure the thead takes full width */
 }
 
 .fulfillment-order-table tbody {
@@ -510,7 +613,7 @@ button {
   text-align: center;
   padding: 10px 15px;
   box-sizing: border-box;
-  width: 1%; /* Ensure each cell is distributed evenly */
+  width: 300px; /*Ensure each cell is distributed evenly */
 }
 
 .fulfillment-product-totals {
@@ -538,7 +641,6 @@ button {
 }
 
 .fulfillment-product-buttons button {
-  display: flex;
   align-self: center;
   margin-bottom: 15px;
   width: 30%;
@@ -548,7 +650,6 @@ button {
   background-color: #ffffff;
   text-align: center;
   font-size: large;
-  font-weight: bold;
   transition-duration: 0.4s;
   border: 2px solid;
 }
@@ -566,11 +667,13 @@ button {
 .confirm-approval:hover {
   background-color: #596418;
   color: white;
+  cursor: pointer;
 }
 
 .cancel-approval:hover {
   background-color: red;
   color: white;
+  cursor: pointer;
 }
 
 /* ---------SALES CSS------------------ */
@@ -578,10 +681,10 @@ button {
 .sales-main {
   display: flex;
   background-color: #C8C468;
+  padding: 100px 20px 20px 20px;
+  box-sizing: border-box;
   width: 100%;
   height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
 }
 
 .sales-order-list {
@@ -604,7 +707,10 @@ button {
 }
 
 .sales-order-title, 
-.sales-product-title, 
+.sales-product-title{
+  font-family: "Roca Bold";
+}
+
 .sales-order-table td, 
 .sales-order-table th, 
 .sales-product-table td, 
@@ -612,7 +718,7 @@ button {
 .sales-product-total-items p, 
 .sales-product-total-cost p, 
 button {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Lato Regular";
 }
 
 
@@ -703,11 +809,11 @@ button {
   height: 30px; /* Adjust the height as needed */
 }
 
-.sales-order-table td, .sales-order-table th, .sales-product-table td, .fulfillment-product-table th {
+.sales-order-table td, .sales-order-table th, .sales-product-table td, .sales-product-table th {
   text-align: center;
   padding: 10px 15px;
   box-sizing: border-box;
-  width: 1%; /* Ensure each cell is distributed evenly */
+  width: 400px; /* Ensure each cell is distributed evenly */
 }
 
 .sales-product-totals {
@@ -735,7 +841,6 @@ button {
 }
 
 .sales-product-buttons button {
-  display: flex;
   align-self: center;
   margin-bottom: 15px;
   width: 30%;
@@ -745,7 +850,6 @@ button {
   background-color: #ffffff;
   text-align: center;
   font-size: large;
-  font-weight: bold;
   transition-duration: 0.4s;
   border: 2px solid;
 }
@@ -758,4 +862,77 @@ button {
 .remove-view:hover {
   background-color: #596418;
   color: white;
+  cursor: pointer;
+}
+
+
+
+
+
+
+.product-summary-main {
+  background-color: #C8C468;
+  width: 100%;
+  height: 100vh;
+  padding: 140px 120px 50px 120px;
+  box-sizing: border-box;
+}
+
+.product-summary-table{
+  width: 100%;
+  table-layout: fixed;
+  text-align: center;
+  font-family: "Lato Regular";
+}
+
+.product-summary-table th, .product-summary-table td{
+  padding: 7px;
+  border: 0 none;
+  text-align: center;
+}
+
+.product-summary-table th{
+  background-color: #596418;
+  color: white;
+}
+
+.product-summary-table td{
+  background-color: #FEF1CF;
+}
+
+.product-summary-table th:first-of-type{
+  border-top-left-radius: 10px;
+}
+
+.product-summary-table th:last-of-type{
+  border-top-right-radius: 10px;
+}
+
+.product-summary-table tr:last-of-type td:first-of-type{
+  border-bottom-left-radius: 10px;
+}
+
+.product-summary-table tr:last-of-type td:last-of-type{
+  border-bottom-right-radius: 10px;
+}
+
+.indiv-prod-sales-btn{
+  width: 270px;
+  float: right;
+}
+
+.indiv-prod-sales-text{
+  font-size: 17px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+.indiv-prod-sales-text:hover{
+  color: white;
+  text-decoration: none;
+}
+
+.group-key, .group-total-sales{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }

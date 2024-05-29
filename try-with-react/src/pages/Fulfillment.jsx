@@ -21,20 +21,6 @@ const Fulfillment = () => {
             });
     }, []);
 
-    const getTotalCost = () => {
-        let total = 0;
-        if (orderToApprove.productIDs) {
-            orderToApprove.productIDs.forEach((orderProductId, index1) => {
-                products.forEach((product) => {
-                    if (orderProductId === product.productID) {
-                        total += product.productPrice * orderToApprove.orderQuantity[index1];
-                    }
-                });
-            });
-        }
-        return total;
-    };
-
     useEffect(() => {
         if (approveOrder) {
             fetch('http://localhost:3000/update-status', {
@@ -55,6 +41,20 @@ const Fulfillment = () => {
                 .catch(error => {
                     console.error('Error updating order status:', error);
                 });
+
+            orderToApprove.orderQuantity.forEach((currentQuantity, index) => {
+                fetch('http://localhost:3000/update-qty',
+                {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        id: orderToApprove.productIDs[index],
+                        quantity: currentQuantity,
+                    })
+                })
+            })
         }
         setApproveOrder(false);
     }, [approveOrder, orderToApprove.transactionID]);
@@ -80,7 +80,7 @@ const Fulfillment = () => {
                                     <td>{order.transactionID}</td>
                                     <td>{order.email}</td>
                                     <td>{order.dateOrdered.slice(0, 10)}</td>
-                                    <td>{order.dateOrdered.slice(11, 19)}</td>
+                                    <td>{order.timeOrdered}</td>
                                     <td>
                                         <button 
                                             onClick={() => {
@@ -112,12 +112,12 @@ const Fulfillment = () => {
                                     <tbody>
                                         {orderToApprove.productIDs && orderToApprove.productIDs.map((orderProductId, index1) => (
                                             products.map((product, index2) => (
-                                                orderProductId === product.productID ? (
+                                                orderProductId === product._id ? (
                                                     <tr key={index2}>
                                                         <td>{product.productName}</td>
-                                                        <td>₱{product.productPrice}</td>
+                                                        <td>P{product.productPrice}</td>
                                                         <td>{orderToApprove.orderQuantity[index1]}</td>
-                                                        <td>₱{product.productPrice * orderToApprove.orderQuantity[index1]}</td>
+                                                        <td>P{product.productPrice * orderToApprove.orderQuantity[index1]}</td>
                                                     </tr>
                                                 ) : null
                                             ))
@@ -126,15 +126,15 @@ const Fulfillment = () => {
                                 </table>
                                 <div className="fulfillment-product-totals">
                                     <div className="fulfillment-product-total-items">
-                                        <p>Total items: {orderToApprove.productIDs ? orderToApprove.productIDs.length : 0}</p>
+                                        <p>Total items: {orderToApprove.itemQuantity}</p>
                                     </div>
                                     <div className="fulfillment-product-total-cost">
-                                        <p>Total cost: ₱{getTotalCost()}</p>
+                                        <p>Total cost: P{orderToApprove.totalPrice}</p>
                                     </div>
                                 </div>
                                 <div className="fulfillment-product-buttons">
-                                    <button onClick={() => { setApproveOrder(true); }} className="confirm-approval">Confirm approval</button>
-                                    <button onClick={() => { setOrderToApprove({}); }} className="cancel-approval">Cancel confirmation</button>
+                                    <button onClick={() => { setApproveOrder(true); }} className="confirm-approval">Confirm Approval</button>
+                                    <button onClick={() => { setOrderToApprove({}); }} className="cancel-approval">Back</button>
                                 </div>
                             </div>  
                     </div>

@@ -97,6 +97,8 @@ export default function Orders() {
                       <li className="order-value">{prod} — x{item.orderQuantity[index]}</li>
                     ))}
                   </ul>
+                  <span className="order-label">Total: </span>
+                  <span className="order-value">Php {item.totalPrice}.00</span><br />
                 </div>
 
                 <div>

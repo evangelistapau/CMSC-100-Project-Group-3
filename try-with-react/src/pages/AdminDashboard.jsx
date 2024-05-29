@@ -5,7 +5,7 @@ import usersImage from '../assets/users.png';
 import listingsImage from '../assets/listings.png';
 import fulfillmentImage from '../assets/fulfillment.png';
 import salesImage from '../assets/sales.png';
-import logo from '../images/logo.png';
+import logo from '../assets/logo.png';
 
 function AdminDashboard() {
 
@@ -16,16 +16,19 @@ function AdminDashboard() {
   };
   return (
     <>
-      <header className="admin-navbar-container">
-        <div className="admin-logo-container">
-          <img src={logo} className="logo-img" alt="Logo" />
-          <p className="admin-logo-title">F-2-T Admin</p>
-        </div>
-        <div className="header-right">
-          <span>Welcome back, Admin!</span>
-          <button onClick={Logout} className="admin-signoutBTN">Log out</button>
-        </div>
+      <header>
+        <section className="admin-navbar-container">
+          <div className="admin-logo-container">
+            <img src={logo} className="logo-img" alt="Logo" />
+            <p className="logo-title">Farm-To-Table Admin</p>
+          </div>
+          <div className="header-right">
+            <span className="welcome-admin">Welcome back, Admin!</span>
+            <button onClick={Logout} className="admin-signoutBTN">Log-out</button>
+          </div>
+        </section>
       </header>
+
       <div className='admin-dashboard-container'>
         <center>
           <div className="admin-dashboard">

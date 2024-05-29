@@ -142,7 +142,7 @@ const ProductListings = () => {
     <div className="product-listings-left">
       <h1>Product Listings</h1>
       <div className="sorting-options">
-        <label>Sort By: </label>
+        <label className="sort-product-listings">Sort By: </label>
         <select value={sortKey} onChange={(e) => handleSort(e.target.value)}>
           <option value="productName">Name</option>
           <option value="productType">Type</option>
@@ -150,16 +150,16 @@ const ProductListings = () => {
           <option value="productQuantity">Quantity</option>
         </select>
         <button onClick={() => handleSort(sortKey)}>
-          Sort {sortOrder === "asc" ? "Ascending" : "Descending"}
+          Sort {sortOrder === "asc" ? "Descending" : "Ascending"}
         </button>
       </div>
-      <table className='products-table'>
+      <table className="products-table">
         <thead>
           <tr>
-            <th>Product Name</th>
-            <th>Product Type</th>
-            <th>Product Price</th>
-            <th>Product Description</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Description</th>
             <th>Quantity</th>
             <th>Actions</th>
           </tr>
@@ -169,7 +169,7 @@ const ProductListings = () => {
             <tr key={index}>
               <td>{product.productName || ''}</td>
               <td>{productTypeMapping[product.productType] || ''}</td> {/* Use the mapping to display the product type name */}
-              <td>${(product.productPrice || 0).toFixed(2)}</td>
+              <td>P{(product.productPrice || 0).toFixed(2)}</td>
               <td>{product.productDescription || ''}</td>
               <td>{product.productQuantity || ''}</td>
               <td>
@@ -199,8 +199,6 @@ const ProductListings = () => {
         </div>
         <div className="input-group">
           <label htmlFor="product-type">Product Type:</label>
-        </div>
-        <div className="input-group">
           <select
             id="product-type"
             value={productType}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import profileImage from '../assets/icon.jpg';
 
 export default function Profile() {
     const [user, setUser] = useState(null);
@@ -99,10 +100,11 @@ export default function Profile() {
     return (
     <div className='ProfilePage'>
         <div className='user-div'>
-            <h1>MY PROFILE</h1>
+            <h1>Profile</h1>
+            <img src={profileImage} alt="Profile" className="profile-image"/>
             {user && !editing && (
                 <div>
-                    <p> <strong>Name:</strong> {user.firstName} {user.lastName} </p>
+                    <p><strong>Name:</strong> {user.firstName} {user.lastName} </p>
                     <p><strong>Username:</strong> {user.username}</p>
                     <p><strong>Email:</strong> {user.email}</p>
                     <button onClick={handleEdit}>Edit Info</button>
@@ -115,6 +117,7 @@ export default function Profile() {
                     <p>Username: <input type="text" name="username" value={editedUser.username} onChange={handleInputChange} /></p>
                     <p>Email: <input type="text" name="email" value={editedUser.email} onChange={handleInputChange} disabled/></p>
                     <button onClick={handleSave}>Save</button>
+                    <button onClick={() => {setEditing(false)}}>Back</button>
                 </div>
             )}
         </div>
@@ -128,7 +131,7 @@ export default function Profile() {
                         <th>Date Ordered</th>
                         <th>Time Ordered</th>
                         <th>Item Quantity</th>
-                        <th>Total Price</th>
+                        <th>Total Price (in Php)</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -177,7 +177,6 @@ export default function Shop() {
             <span>Order by:</span>
             <button onClick={() => {setSortOrder("asc"); setAsc(true); setDesc(false)}} className={ascClicked ? "clicked" : "initial"}>Ascending</button>
             <button onClick={() => {setSortOrder("desc"); setAsc(false); setDesc(true)}} className={descClicked ? "clicked" : "initial"}>Descending</button>
-
           </div>
           <div className="view">
             <span>Sort by:</span>

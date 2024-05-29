@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
-import logo from '../images/logo.png';
+import logo from '../assets/logo.png';
 
 export default function Signup() {
 

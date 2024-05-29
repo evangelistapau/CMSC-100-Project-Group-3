@@ -26,6 +26,7 @@ const Users = () => {
         <div className='main-user-container'>
         <div className='user-container'>
             <h1>User Accounts</h1>
+            <p>Total Users: {users.length}</p>
             {loading ? (
                 <p>Loading...</p>
             ) : (
@@ -42,7 +43,6 @@ const Users = () => {
                         </li>
                         ))}
                     </ul>
-                    <p>Total Users: {users.length}</p>
                 </div>
             )}
         </div>

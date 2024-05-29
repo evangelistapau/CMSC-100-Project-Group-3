@@ -416,7 +416,6 @@ header{
 .summary-table{
   width: 100%;
   table-layout: fixed;
-  text-align: center;
   font-family: "Lato Regular";
 }
 
@@ -425,6 +424,7 @@ header{
 }
 
 .summary-table th, .summary-table td{
+  text-align: center;
   padding: 7px;
 }
 
@@ -579,69 +579,48 @@ header{
 
 /*------------- PROFILE --------------*/
 
-/* .profile-main{
-  padding: 140px 120px 0 120px;
-}
-
-.profile-title{
-  font-family: "Roca Black";
-  font-size: 25px;
-}
-
-.profile-label{
-  font-family: "Roca Bold";
-  color: #985B40;
-}
-
-.profile-value{
-  font-family: "Roca Light";
-}
-
-.profile-btn{
-  font-family: "Lato Bold";
-  font-size: 15px;
-  color: white;
-  padding: 7px 10px;
-  border: 0 none;
-  border-radius: 10px;
-  background-color: #596418;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.profile-btn:hover{
-  background-color: #F29400;
-  cursor: pointer;
-} */
-
 .ProfilePage {
-  background-color:  #FFCF58;
-  height: 100vh; /* Ensure the background covers the full height */
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  /* font-family: Arial, sans-serif; */
+  padding: 50px 20px;
+  align-items: flex-start;
+}
+
+.profile-image {
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+  margin-left: 37%;
+  border-style: solid;
+  border-color: #596418;
 }
 
 .user-div {
   margin-top: 80px;
   margin-left: 20px;
-  background-color: #fff;
+  background-color: #fddc8a;
   padding: 20px;
   padding-top: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width:  36%; 
+  width:  30%; 
   height: fit-content;  
 }
 
 .orders-div {
   margin-top: 80px;
-  background-color: #fff;
-  padding: 20px;
+  margin-right: 20px;
+  padding: 30px;
+  width: 58%; /* Slightly larger width */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 55%; /* Slightly larger width */
+  background-color: #fddc8a;
 }
+
+.orders-div h2 {
+  font-family: "Roca Bold";
+}
+
 .user-div h1 {
   text-align: center;
   font-size: 20px;
@@ -651,12 +630,14 @@ header{
   background-color: #eeaa56;
   border-radius: 5px;
   padding: 10px;
+  font-family: "Roca Bold";
 }
 
 .user-div p {
-  font-size: 20px;
+  font-size: 16px;
   margin: 10px 0;
   color: #000000;
+  font-family: "Lato Regular";
 }
 
 .user-div input[type="text"] {
@@ -665,8 +646,9 @@ header{
   margin: 10px 0;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 1em;
+  font-size: 16px;
   box-sizing: border-box;
+  font-family: "Lato Regular";
 }
 
 .user-div button {
@@ -691,36 +673,46 @@ header{
   cursor: not-allowed;
 }
 
-.orders-div table {
+.orders-div table{
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
+  font-family: "Lato Regular";
 }
 
-.orders-div th, .orders-div td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-.orders-div th {
-  background-color: #f2f2f2;
+.orders-div th, .orders-div td{
+  padding: 10px;
+  border: none;
   text-align: left;
 }
 
-.orders-div tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.orders-div tr:hover {
-  background-color: #ddd;
-}
-
-.orders-div th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+.orders-div th{
   background-color: #596418;
   color: white;
 }
+
+.orders-div td{
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.orders-div th:first-of-type{
+  border-top-left-radius: 10px;
+}
+
+.orders-div th:last-of-type{
+  border-top-right-radius: 10px;
+}
+
+.orders-div tr:last-of-type td:first-of-type{
+  border-bottom-left-radius: 10px;
+}
+
+.orders-div tr:last-of-type td:last-of-type{
+  border-bottom-right-radius: 10px;
+}
+
+.orders-div tr:hover {
+  background-color: white;
+}
+
 
 /*------------------------------------*/
 

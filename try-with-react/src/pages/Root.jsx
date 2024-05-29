@@ -1,7 +1,7 @@
 
 import { Outlet, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import logo from '../images/logo.png';
+import logo from '../assets/logo.png';
 
 
 export default function Root() {
@@ -26,7 +26,7 @@ export default function Root() {
                   <li><Link to={`/root/shop`} className="navbar-link">Shop</Link></li>
                   <li><Link to={`/root/orders`} className="navbar-link">Your Orders</Link></li>
                   <li><Link to={`/root/profile`} className="navbar-link">Your Profile</Link></li>
-                  <li><button onClick={Logout} className='signoutBTN'>Log out</button></li>
+                  <li><button onClick={Logout} className='signoutBTN'>Log-out</button></li>
               </ul>
             </nav>
           </section>
