@@ -49,14 +49,14 @@ function AdminDashboard() {
 
               {/* card for Fulfillment */}
               <Link to={`/root-admin/fulfillment`} className="category-card admin-link">
-                <h2>FULFILLMENT</h2>
+                <h2>ORDER FULFILLMENT</h2>
                 <img src={fulfillmentImage} alt="Fulfillment" className="category-image"/>
                 <p>Process and fulfill orders</p>
               </Link>
 
               {/* card for Sales */}
               <Link to={`/root-admin/sales`} className="category-card admin-link">
-                <h2>SALES</h2>
+                <h2>SALES REPORTS</h2>
                 <img src={salesImage} alt="Sales" className="category-image"/>
                 <p>View sales reports</p>
               </Link>
