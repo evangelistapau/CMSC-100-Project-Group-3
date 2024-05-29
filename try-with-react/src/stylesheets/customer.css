@@ -622,6 +622,15 @@ header{
   /* font-family: Arial, sans-serif; */
 }
 
+.profile-image {
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+  margin-left: 37%;
+  border-style: solid;
+  border-color: #596418;
+}
+
 .user-div {
   margin-top: 80px;
   margin-left: 20px;
@@ -642,6 +651,11 @@ header{
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 55%; /* Slightly larger width */
 }
+
+.orders-div h2 {
+  font-family: "Roca Bold";
+}
+
 .user-div h1 {
   text-align: center;
   font-size: 20px;
@@ -651,12 +665,14 @@ header{
   background-color: #eeaa56;
   border-radius: 5px;
   padding: 10px;
+  font-family: "Roca Bold";
 }
 
 .user-div p {
   font-size: 20px;
   margin: 10px 0;
   color: #000000;
+  font-family: "Roca Light";
 }
 
 .user-div input[type="text"] {
@@ -667,6 +683,7 @@ header{
   border-radius: 4px;
   font-size: 1em;
   box-sizing: border-box;
+  font-family: "Lato Regular";
 }
 
 .user-div button {
@@ -700,6 +717,7 @@ header{
 .orders-div th, .orders-div td {
   border: 1px solid #ddd;
   padding: 8px;
+  font-family: "Roca Light";
 }
 
 .orders-div th {

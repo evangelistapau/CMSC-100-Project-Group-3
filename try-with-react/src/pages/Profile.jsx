@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import profileImage from '../assets/icon.jpg';
 
 export default function Profile() {
     const [user, setUser] = useState(null);
@@ -100,6 +101,7 @@ export default function Profile() {
     <div className='ProfilePage'>
         <div className='user-div'>
             <h1>MY PROFILE</h1>
+            <img src={profileImage} alt="Profile" className="profile-image"/>
             {user && !editing && (
                 <div>
                     <p> <strong>Name:</strong> {user.firstName} {user.lastName} </p>

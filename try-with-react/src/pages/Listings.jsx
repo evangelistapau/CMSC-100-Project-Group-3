@@ -169,7 +169,7 @@ const ProductListings = () => {
             <tr key={index}>
               <td>{product.productName || ''}</td>
               <td>{productTypeMapping[product.productType] || ''}</td> {/* Use the mapping to display the product type name */}
-              <td>${(product.productPrice || 0).toFixed(2)}</td>
+              <td>P{(product.productPrice || 0).toFixed(2)}</td>
               <td>{product.productDescription || ''}</td>
               <td>{product.productQuantity || ''}</td>
               <td>
