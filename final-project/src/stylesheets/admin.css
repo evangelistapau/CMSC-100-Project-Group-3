@@ -376,28 +376,27 @@ input {
 
 /* USERS CSS */
 
+
 .main-user-container {
-  padding-top: 110px;
-  background: linear-gradient(135deg, #C8C467 0%, #D4D97D 100%); /* Added gradient background */
-  min-height: 100vh;
+  background: linear-gradient(135deg, #C8C467 0%, #D4D97D 100%);  /*Added gradient background */
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  overflow: hidden; 
 }
 
 .user-container {
-  padding: 20px 40px; /* Enhanced padding for better spacing */
-  background: #ffffff; /* Set solid background color */
-  border-radius: 15px; /* Increased border-radius for smoother corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increased shadow for depth */
-  margin: 20px;
+  padding: 20px 40px;  /*Enhanced padding for better spacing */
+  background: #ffffff;  
+  border-radius: 15px;  /*Increased border-radius for smoother corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /*Increased shadow for depth */
+  margin: 130px 20px 50px 20px;
   max-width: 600px;
-  width: 100%; /* Make container responsive */
+  width: 100%;  /*Make container responsive */
   text-align: left;
   height: auto;
-  max-height: 80vh;
-  overflow-y: auto;
+  max-height: 70vh;
+  overflow-y: scroll;
 }
 
 .user-container h1 {
@@ -482,7 +481,8 @@ input {
   display: flex;
   background-color: #C8C468;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   padding: 100px 20px 20px 20px;
   box-sizing: border-box;
 }
@@ -681,10 +681,11 @@ button {
 .sales-main {
   display: flex;
   background-color: #C8C468;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
   padding: 100px 20px 20px 20px;
   box-sizing: border-box;
-  width: 100%;
-  height: 100vh;
 }
 
 .sales-order-list {

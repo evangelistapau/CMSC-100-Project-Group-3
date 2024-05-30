@@ -107,7 +107,7 @@ export default function Signup() {
                         <button className="auth-submit-btn" type='submit'>Sign Up</button>
                        <p className="login-message">or</p>
                         <Link to="login-admin">
-                        <button className="auth-merchant-btn" type='button'>Login as Merchant</button>
+                        <button className="auth-merchant-btn" type='button'>Login as Admin</button>
                     </Link>
                     </form>
 

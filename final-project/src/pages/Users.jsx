@@ -24,28 +24,28 @@ const Users = () => {
 
     return (
         <div className='main-user-container'>
-        <div className='user-container'>
-            <h1>User Accounts</h1>
-            <p>Total Users: {users.length}</p>
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <div>
-                    <ul>
-                        {users.map(user => (
-                            <li key={user._id} className='user-item'>
-                            <img src={usersImage} alt="User" className="user-image" />
-                            <div className='user-info'>
-                                <div className='user-fullname'>{user.firstName} {user.lastName}</div>
-                                <div className='user-email'><strong>Email:</strong> {user.email}</div>
-                                <div className='username'><strong>Username:</strong> {user.username}</div>
-                            </div>
-                        </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-        </div>
+            <div className='user-container'>
+                <h1>User Accounts</h1>
+                <p>Total Users: {users.length}</p>
+                {loading ? (
+                    <p>Loading...</p>
+                ) : (
+                    <div>
+                        <ul>
+                            {users.map(user => (
+                                <li key={user._id} className='user-item'>
+                                <img src={usersImage} alt="User" className="user-image" />
+                                <div className='user-info'>
+                                    <div className='user-fullname'>{user.firstName} {user.lastName}</div>
+                                    <div className='user-email'><strong>Email:</strong> {user.email}</div>
+                                    <div className='username'><strong>Username:</strong> {user.username}</div>
+                                </div>
+                            </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
