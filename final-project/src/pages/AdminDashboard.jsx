@@ -42,7 +42,7 @@ function AdminDashboard() {
 
               {/* card for Listings */}
               <Link to={`/root-admin/listings`} className="category-card admin-link">
-                <h2>LISTINGS</h2>
+                <h2>PRODUCT LISTINGS</h2>
                 <img src={listingsImage} alt="Listings" className="category-image"/>
                 <p>Manage product listings</p>
               </Link>
