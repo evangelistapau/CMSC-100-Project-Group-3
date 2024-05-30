@@ -188,7 +188,7 @@ export default function Shop() {
         </div>
         <div className="product-container">
           {sortedProducts.map((item, index) =>
-              <div className="product">
+              <div key={item._id} className="product">
                 <img src={item.productImg} className="product-img"></img>
                 <p className="product-name">{item.productName}</p>
                 <p className="product-price">P{item.productPrice}.00</p>
